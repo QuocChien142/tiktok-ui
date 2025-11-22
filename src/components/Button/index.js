@@ -7,16 +7,17 @@ const cx = classNames.bind(styles);
 function Button({
     to,
     href,
-    primary,
-    outline,
-    text,
-    rounded,
-    disabled,
-    small,
-    large,
+    primary = false,
+    outline = false,
+    text = false,
+    rounded = false,
+    disabled = false,
+    small = false,
+    large = false,
     children,
     className,
     leftIcon,
+    rightIcon,
     onClick,
     ...passProps
 }) {
@@ -25,14 +26,6 @@ function Button({
         onClick,
         ...passProps,
     };
-
-    if (to) {
-        props.to = to;
-        Comp = Link;
-    } else if (href) {
-        props.href = href;
-        Comp = 'a';
-    }
 
     // Remove event listener when btn is disabled
     if (disabled) {
@@ -43,20 +36,30 @@ function Button({
         });
     }
 
+    if (to) {
+        props.to = to;
+        Comp = Link;
+    } else if (href) {
+        props.href = href;
+        Comp = 'a';
+    }
+
     const classes = cx('wrapper', {
         [className]: className,
         primary,
         outline,
         text,
-        rounded,
         disabled,
+        rounded,
         small,
         large,
     });
+
     return (
         <Comp className={classes} {...props}>
             {leftIcon && <span className={cx('icon')}>{leftIcon}</span>}
             <span className={cx('title')}>{children}</span>
+            {rightIcon && <span className={cx('icon')}>{rightIcon}</span>}
         </Comp>
     );
 }

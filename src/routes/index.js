@@ -9,7 +9,7 @@ import Upload from '~/pages/Upload';
 import Search from '~/pages/Search';
 
 // Public routes
-export const publicRoutes = [
+const publicRoutes = [
     { path: '/', component: Home },
     { path: '/following', component: Following },
     { path: '/profile', component: Profile },
@@ -17,4 +17,6 @@ export const publicRoutes = [
     { path: '/search', component: Search, layout: null },
 ];
 
-export const privateRoutes = [];
+const privateRoutes = [];
+
+export { publicRoutes, privateRoutes };
